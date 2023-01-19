@@ -240,6 +240,7 @@ int main(int argc, char **argv)
 					: "=rm"(samples[i]), "+rm"(current) /* output */
 					:
 					: "rax", "rcx", "rdx", "r8", "memory");
+				_mm_clflush(current);
 			}
 
 			// Check that the victim's iteration of interest is actually ended

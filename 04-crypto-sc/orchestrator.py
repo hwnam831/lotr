@@ -43,7 +43,7 @@ def parse_file_2c(fn):
 # -------------------------------------------------------------------------------------------------------------------
 def plot_runs(left, right):
     low_thres = 50		# FIXME: change to other ranges if needed
-    high_thres = 250	# FIXME: change to other ranges if needed
+    high_thres = 600	# FIXME: change to other ranges if needed
 
     # Read the 0 traces
     out_files = sorted(glob.glob(left + "/trace*"))
@@ -96,8 +96,8 @@ def plot_runs(left, right):
     for samples in [trace_0_avg, trace_1_avg]:
         plt.subplot(1, 2, i)
         plt.plot(samples)
-        plt.xlim(0, xmax)
-        plt.ylim(ymin, ymax)
+        #plt.xlim(0, xmax)
+        #plt.ylim(ymin, ymax)
         plt.grid(True, which='both')
 
         plt.xlabel("Latency sample ID")
