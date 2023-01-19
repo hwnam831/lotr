@@ -43,7 +43,7 @@ def parse_file_2c(fn):
 # -------------------------------------------------------------------------------------------------------------------
 def plot_runs(left, right):
     low_thres = 50		# FIXME: change to other ranges if needed
-    high_thres = 600	# FIXME: change to other ranges if needed
+    high_thres = 1000	# FIXME: change to other ranges if needed
 
     # Read the 0 traces
     out_files = sorted(glob.glob(left + "/trace*"))

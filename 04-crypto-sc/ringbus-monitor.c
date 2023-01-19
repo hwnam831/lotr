@@ -228,9 +228,9 @@ int main(int argc, char **argv)
 					// "movq %%rax, %%r8\n\t"
 					"movl %%eax, %%r8d\n\t"		/* r8d = eax; this is to back up eax into another register */
 					"movq (%1), %1\n\t"			/* current = *current; LOAD */
-					"movq (%1), %1\n\t"			/* current = *current; LOAD */
-					"movq (%1), %1\n\t"			/* current = *current; LOAD */
-					"movq (%1), %1\n\t"			/* current = *current; LOAD */
+					//"movq (%1), %1\n\t"			/* current = *current; LOAD */
+					//"movq (%1), %1\n\t"			/* current = *current; LOAD */
+					//"movq (%1), %1\n\t"			/* current = *current; LOAD */
 					"rdtscp\n\t"				/* eax = TSC (timestamp counter) */
 					// "shl $32, %%rdx\n\t"
 					// "or %%rdx, %%rax\n\t"
