@@ -45,12 +45,12 @@
 #define L1_CACHE_SETS_LOG 6
 #define L1_CACHE_SIZE (L1_CACHE_SETS) * (L1_CACHE_WAYS) * (CACHE_BLOCK_SIZE)
 
-#define L2_CACHE_WAYS 4
-#define L2_CACHE_SETS 1024
-#define L2_CACHE_SETS_LOG 10
+#define L2_CACHE_WAYS 8
+#define L2_CACHE_SETS 512
+#define L2_CACHE_SETS_LOG 9
 #define L2_CACHE_SIZE (L2_CACHE_SETS) * (L2_CACHE_WAYS) * (CACHE_BLOCK_SIZE)
 
-#define LLC_CACHE_WAYS 12
+#define LLC_CACHE_WAYS 20
 #define LLC_CACHE_SETS_TOTAL 16384
 #define LLC_CACHE_SETS_PER_SLICE 2048
 #define LLC_CACHE_SETS_LOG 11
@@ -62,10 +62,10 @@
  */
 
 #define L1_SET_INDEX_MASK 0xFC0				 /* 6 bits - [11-6] - 64 sets + 8 way for each core */
-#define L2_SET_INDEX_MASK 0xFFC0			 /* 10 bits - [15-6] - 1024 sets + 4 way for each core  */
+#define L2_SET_INDEX_MASK 0x7FC0			 /* 10 bits - [15-6] - 1024 sets + 4 way for each core  */
 #define LLC_SET_INDEX_PER_SLICE_MASK 0x1FFC0 /* 11 bits - [16-6] - 2048 sets + 16 way for each slice  */
 #define LLC_INDEX_STRIDE 0x20000			 /* Offset required to get the next address with the same LLC cache set index. 17 = bit 16 (MSB bit of LLC_SET_INDEX_PER_SLICE_MASK) + 1 */
-#define L2_INDEX_STRIDE 0x10000				 /* Offset required to get the next address with the same L2 cache set index. 16 = bit 15 (MSB bit of L2_SET_INDEX_MASK) + 1 */
+#define L2_INDEX_STRIDE 0x8000				 /* Offset required to get the next address with the same L2 cache set index. 16 = bit 15 (MSB bit of L2_SET_INDEX_MASK) + 1 */
 
 /*
  * Memory related constants

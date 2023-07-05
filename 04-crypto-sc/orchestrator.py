@@ -269,7 +269,7 @@ def traintest(directory0, directory1):
     # The larger the C, the more it tries to avoid misclassifying training set
     classifiers = [
         ("Linear SVM C=0.001", SVC(kernel="linear", C=0.001)),
-        ("Linear SVM C=0.025", SVC(kernel="linear", C=0.025)),
+        #("Linear SVM C=0.025", SVC(kernel="linear", C=0.025)),
         #("Linear SVM C=0.1", SVC(kernel="linear", C=0.1)),
         #("Linear SVM C=0.2", SVC(kernel="linear", C=0.2)),
         #("Linear SVM C=0.5", SVC(kernel="linear", C=0.5)),
