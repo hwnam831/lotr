@@ -139,7 +139,7 @@ def do_runs(iteration_number_1, directory_1, iteration_number_2, directory_2):
 
         # Wait for monitor to complete (FIXME: tune timeout if necessary)
         try:
-            monitor_err = monitor_popen.wait(timeout=600)
+            monitor_err = monitor_popen.wait(timeout=1500)
         except:
             print('monitor out of time')
             monitor_err = -1
