@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include <x86intrin.h>
 
-#define NUMBER_OF_LOGICAL_CORES 8
+#define NUMBER_OF_LOGICAL_CORES 4
 
 /*
  * Cache hierarchy characteristics
@@ -51,10 +51,10 @@
 #define L2_CACHE_SIZE (L2_CACHE_SETS) * (L2_CACHE_WAYS) * (CACHE_BLOCK_SIZE)
 
 #define LLC_CACHE_WAYS 12
-#define LLC_CACHE_SETS_TOTAL 16384
+#define LLC_CACHE_SETS_TOTAL 8192
 #define LLC_CACHE_SETS_PER_SLICE 2048
 #define LLC_CACHE_SETS_LOG 11
-#define LLC_CACHE_SLICES 8
+#define LLC_CACHE_SLICES 4
 #define LLC_CACHE_SIZE (LLC_CACHE_SETS_TOTAL) * (LLC_CACHE_WAYS) * (CACHE_BLOCK_SIZE)
 
 /* 

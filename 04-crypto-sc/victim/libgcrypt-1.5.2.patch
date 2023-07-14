@@ -234,7 +234,7 @@ index 0000000..b74d795
 +  // From here we basically provide an on-demand decryption service
 +  // to the monitor by repeating the gcry_pk_decrypt operation
 +
-+  pin_cpu(5);   // 5 for the full flush; 6 for the L1/L2 only
++  pin_cpu(3);   // 5 for the full flush; 6 for the L1/L2 only
 +
 +  volatile struct sharestruct *mysharestruct = get_sharestruct();
 +  mysharestruct->iteration_of_interest_running = 0;
